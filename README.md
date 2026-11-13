@@ -1,5 +1,9 @@
 # 音乐解锁
 
+![版本](https://img.shields.io/github/v/release/Violet-Evergarden1041/music-unlock?label=release)
+![许可](https://img.shields.io/github/license/Violet-Evergarden1041/music-unlock)
+![平台](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-blue)
+
 把国内几个音乐平台下载的加密音频解成普通音频，并转成你想要的格式。
 带图形界面，拖进去、选格式、点开始。界面支持**浅色 / 深色 / 跟随系统**三种主题。
 
@@ -9,6 +13,21 @@
 > **仅供个人学习与自用。** 请支持正版音乐，不要拿它做商业分发。
 
 ![界面截图](assets/screenshot.png)
+
+## 下载
+
+**[⬇️ 下载最新版本](https://github.com/Violet-Evergarden1041/music-unlock/releases/latest)**
+
+Windows 10 / 11（64 位），免安装，解压即用：
+
+1. 下载 `MusicUnlock-v1.0.0-win64.zip`（约 223 MB）
+2. 解压到任意目录（建议不要放在 C 盘根目录）
+3. 双击 `MusicUnlock.exe`
+
+> **首次运行可能弹出蓝色的「Windows 已保护你的电脑」。**
+> 这是未签名程序的正常提示，不是病毒——点「更多信息」→「仍要运行」即可。
+
+不想下载二进制？也可以[从源码运行](#从源码运行)，只需要 Python。
 
 ## 它解决什么问题
 
