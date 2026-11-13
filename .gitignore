@@ -1,0 +1,34 @@
+# 构建产物
+_build/
+dist/
+build/
+*.spec
+
+# 第三方参考实现（不随仓库分发）
+_ref/
+
+# 内置的 ffmpeg / ffprobe 二进制（体积过大，需自行准备，见 README）
+bin/*.exe
+bin/*.dll
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 测试夹具（真实音乐样本，涉及版权，不入库）
+tests/fixtures/
+
+# 运行时产物
+output/
+*.log
+
+# 个人数据：QQ 音乐密钥缓存、Frida 导出
+keys.json
+qqmusic_exports_*.json
+
+# 开发调试残留
+assets/_probe_unaware.manifest
+# 图标草稿（由 tools/make_icons.py 生成）
+assets/candidates/

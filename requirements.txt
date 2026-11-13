@@ -1,0 +1,5 @@
+# 图形界面
+PySide6-Essentials>=6.6
+
+# 可选：STag 类文件需要借助 QQ 音乐客户端解密时启用
+# frida>=16.0
