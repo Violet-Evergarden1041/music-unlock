@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from PySide6.QtCore import QSettings, Qt, QThread, QTimer, Signal  # noqa: E402
 from PySide6.QtGui import QColor, QIcon, QKeySequence, QPalette, QShortcut  # noqa: E402
+from app.single_instance import SingleInstance  # noqa: E402
 from PySide6.QtWidgets import (  # noqa: E402
     QAbstractItemView,
     QApplication,
@@ -987,11 +988,35 @@ class MainWindow(QMainWindow):
         event.accept()
 
 
+def _bring_to_front(window) -> None:
+    """把窗口从托盘或最小化状态叫出来，并放到最前面。"""
+    window.restore_from_tray()
+    window.showNormal()
+    window.raise_()
+    window.activateWindow()
+    # Windows 的前台切换限制有时会拦住 activateWindow，再补一枪
+    try:
+        import ctypes
+
+        ctypes.windll.user32.SetForegroundWindow(int(window.winId()))
+    except Exception:
+        pass
+
+
 def main() -> int:
     app = QApplication(sys.argv)
     app.setApplicationName(APP_NAME)
+
+    # 先抢锁再建窗口：启动瞬间连点也不会漏出第二个实例
+    guard = SingleInstance()
+    if guard.already_running():
+        guard.broadcast_activate()   # 让已有实例把窗口显示出来
+        return 0
+
     window = MainWindow()
     window.show()
+    guard.listen(app, lambda: _bring_to_front(window))
+
     return app.exec()
 
 
